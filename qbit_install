@@ -1,0 +1,54 @@
+#!/bin/bash
+
+source src/qbit_user
+source src/qbit_service
+source src/qbit_rclone
+source src/qbit_rss
+source src/qbit_rules
+source src/qbit_conf
+
+# Instala dependencias
+apt install unzip -y; apt install zip -y;
+add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+apt install qbittorrent-nox -y
+adduser --system --group qbittorrent-nox
+adduser $USER qbittorrent-nox
+mkdir -p /home/$USER
+curl https://rclone.org/install.sh | sudo bash
+
+# Configura e monta remotes do rclone
+qbit_rclone
+
+# Inicia qBittorrent
+qbit_service
+
+# Se ativado, adiciona regras e RSS
+qbit_rss
+qbit_rules
+
+# Download da WebUI
+# git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/qBittorrent_main/VueTorrent
+
+if [ $rcloneDownloadConfig = "on" ]; then
+  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  printf "Instalação concluída.\n\n$(tput setaf 7)"
+  printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
+  printf "Usuário: $(tput setaf 6)pirata$(tput setaf 7)\n"
+  printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
+else
+  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  printf "Instalação concluída.\n\n$(tput setaf 7)"
+  printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
+  printf "Usuário: $(tput setaf 6)pirata$(tput setaf 7)\n"
+  printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
+  printf "Você não adicionou sua config do rclone\nno script, portanto devera fazer isso agora.\n"
+  printf "Execute o comando: $(tput setaf 6)rclone config --config /home/rclone/rclone.conf$(tput setaf 7)\n\n"
+  printf "Conforme definido no script, você precisa criar os remotes;\n\n"
+  printf "    $(tput setaf 6)$moviesRemote$(tput setaf 7) para os filmes.\n"
+  printf "    $(tput setaf 6)$tvRemote$(tput setaf 7) para as séries\n"
+  printf "    $(tput setaf 6)$epsRemote$(tput setaf 7) para os episódios avulsos.\n"
+  if [ $torrentsFileEnable = "on" ]; then
+    printf "    $(tput setaf 6)$filesRemote$(tput setaf 7) para os arquivos .torrent.\n\n"
+  fi
+  printf "Após ter configurado\nexecute o comando: $(tput setaf 6)sudo systemctl start {tv.service,movie.service,eps.service}$(tput setaf 7)\n\n\n"
+fi

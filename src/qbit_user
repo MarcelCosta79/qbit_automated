@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Com isso ativado, ira baixar sua configuração do rclone já configurada.
+# Requesito: Adicionar um link direto para download da sua conf.
+rcloneDownloadConfig="on"
+rcloneConfig="https://gist.githubusercontent.com/Zonimi/58e1ab4a4513534e0c49f76b88355492/raw/rclone.conf"
+
+# Com isso ativado, seu RSS será adicionado e a organização de filmes, séries e etc feita.
+# Requesitos: Adicionar seu link RSS.
+rssEnable="on"
+urlRSS="https://pirata.digital/rss/57.7b80109fd2c883cae7aea5e3b5da2760"
+
+# Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
+# Requesito: criar um remote no rclone com nome de "files".
+torrentsFileEnable="on"
+torrentsFileLocal="/home/$USER/qBittorrent/files"
+filesRemote="files"
+
+# Com isso ativado, seus arquivos torrents sera baixando do $filesRemote e adicionado no client.
+# Opcional: Se "on", envie seus arquivos .torrents zipado no remote "files" para adicionar durante a instalação.
+# O arquivo DEVE ter o nome de: torrents_latest.zip
+autoTorrents="on"
+
+# Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
+crontabEnable="on"
+cronMovies="/*/*"                                 # Local onde seus filmes ira ficar. /*/* = $moviesPath/ano/file.mkv
+cronTv="/*"                                       # Local odne suas séries ira ficar. /* = $tvPath/Name.S01...
+cronEps="/*"                                      # Local onde seus episódios avulsos ira ficar. /* = $epsPath/Name.S01E01...
+
+# Pastas e arquivos do rclone.
+moviesPath="/movies"                              # Pasta onde sera montado o drive contendo os filmes.
+tvPath="/tv"                                      # Pasta onde sera montado o drive contendo as séries.
+epsPath="/eps"                                    # Pasta onde sera montado o drive contendo os episódios.
+
+# Nomes dos remote adicionados no rclone.
+moviesRemote="movies"                             # Insira o nome que você inseriu no rclone para o remote de filmes.
+tvRemote="tv"                                     # Insira o nome que você inseriu no rclone para o remote de séries.
+epsRemote="eps"                                   # Insira o nome que você inseriu no rclone para o remote de episódios.
+
+# Local onde sera salvo os arquivos do rclone.
+rcloneFilesDir="/home/$USER/rclone"
+
+# Cache para os downloads feito pelo torrent.
+# paga giga use "G", para mega usa "M".
+cacheMovie="400G"                                 # Cache para filmes.
+cacheTv="500G"                                    # Cache para séries.
+cacheEps="100G"                                   # Cache para episódios.
+cacheDir="${rcloneFilesDir}/cache"                # Diretorio onde o cache sera salvo
+
+# Informações da maquina + random's
+ip=$(curl -kLs "http://api.ipify.org")
+portWeb=$(shuf -i 1000-10000 -n 1)
+portQbit=$(shuf -i 1000-10000 -n 1)

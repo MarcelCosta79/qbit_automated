@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source src/qbit_user
+
+qbit_rss() {
+  if [ $rssEnable = "on" ]; then
+    rssLink="/home/$USER/qBittorrent/config/rss/feeds.json"
+    echo "{" >${rssLink}
+    echo "    \"Pirata Digital Feed RSS (Not All Treasure is Silver & Gold)\": {" >>${rssLink}
+    echo "        \"url\": \"${urlRSS}\"" >>${rssLink}
+    echo "    }" >>${rssLink}
+    echo "}" >>${rssLink}
+  fi
+}

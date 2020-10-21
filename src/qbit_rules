@@ -1,0 +1,111 @@
+#!/bin/bash
+
+source src/qbit_user
+
+qbit_rules () {
+  if [ $rssEnable = "on" ]; then
+    regexQbit="/home/$USER/qBittorrent/config/rss/download_rules.json"
+    echo "{"                                                                             > ${regexQbit}
+    echo "    \"TVShows\": {"                                                            >> ${regexQbit}
+    echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
+    echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
+    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"assignedCategory\": \"\","                                           >> ${regexQbit}
+    echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
+    echo "        \"enabled\": true,"                                                    >> ${regexQbit}
+    echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
+    echo "        \"ignoreDays\": 0,"                                                    >> ${regexQbit}
+    echo "        \"lastMatch\": \"\","                                                  >> ${regexQbit}
+    echo "        \"mustContain\": \".*(S[0-9][0-9]).*\","                               >> ${regexQbit}
+    echo "        \"mustNotContain\": \".*(E[0-9][0-9]).*\","                            >> ${regexQbit}
+    echo "        \"previouslyMatchedEpisodes\": ["                                      >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"savePath\": \"${tvPath}/\","                                         >> ${regexQbit}
+    echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
+    echo "        \"useRegex\": true"                                                    >> ${regexQbit}
+    echo "    },"                                                                        >> ${regexQbit}
+    echo "    \"Episodes\": {"                                                           >> ${regexQbit}
+    echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
+    echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
+    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"assignedCategory\": \"\","                                           >> ${regexQbit}
+    echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
+    echo "        \"enabled\": true,"                                                    >> ${regexQbit}
+    echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
+    echo "        \"ignoreDays\": 0,"                                                    >> ${regexQbit}
+    echo "        \"lastMatch\": \"\","                                                  >> ${regexQbit}
+    echo "        \"mustContain\": \".*(S[0-9][0-9]E[0-9][0-9]).*\","                    >> ${regexQbit}
+    echo "        \"mustNotContain\": \"\","                                             >> ${regexQbit}
+    echo "        \"previouslyMatchedEpisodes\": ["                                      >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"savePath\": \"${epsPath}/\","                                        >> ${regexQbit}
+    echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
+    echo "        \"useRegex\": true"                                                    >> ${regexQbit}
+    echo "    },"                                                                        >> ${regexQbit}
+    echo "    \"Movies 1960\": {"                                                        >> ${regexQbit}
+    echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
+    echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
+    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"assignedCategory\": \"\","                                           >> ${regexQbit}
+    echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
+    echo "        \"enabled\": true,"                                                    >> ${regexQbit}
+    echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
+    echo "        \"ignoreDays\": 0,"                                                    >> ${regexQbit}
+    echo "        \"lastMatch\": \"\","                                                  >> ${regexQbit}
+    echo "        \"mustContain\": \".*1960.*\","                                        >> ${regexQbit}
+    echo "        \"mustNotContain\": \".*(S[0-9][0-9]).*\","                            >> ${regexQbit}
+    echo "        \"previouslyMatchedEpisodes\": ["                                      >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"savePath\": \"${moviesPath}/1960/\","                                >> ${regexQbit}
+    echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
+    echo "        \"useRegex\": true"                                                    >> ${regexQbit}
+    echo "    },"                                                                        >> ${regexQbit}
+    year=1961
+    while [ $year -le 2020 ]
+    do
+      echo "    \"Movies ${year}\": {"                                                   >> ${regexQbit}
+      echo "        \"addPaused\": false,"                                               >> ${regexQbit}
+      echo "        \"affectedFeeds\": ["                                                >> ${regexQbit}
+      echo "            \"${urlRSS}\""                                                   >> ${regexQbit}
+      echo "        ],"                                                                  >> ${regexQbit}
+      echo "        \"assignedCategory\": \"\","                                         >> ${regexQbit}
+      echo "        \"createSubfolder\": null,"                                          >> ${regexQbit}
+      echo "        \"enabled\": true,"                                                  >> ${regexQbit}
+      echo "        \"episodeFilter\": \"\","                                            >> ${regexQbit}
+      echo "        \"ignoreDays\": 0,"                                                  >> ${regexQbit}
+      echo "        \"lastMatch\": \"\","                                                >> ${regexQbit}
+      echo "        \"mustContain\": \".*${year}.*\","                                   >> ${regexQbit}
+      echo "        \"mustNotContain\": \".*(S[0-9][0-9]).*\","                          >> ${regexQbit}
+      echo "        \"previouslyMatchedEpisodes\": ["                                    >> ${regexQbit}
+      echo "        ],"                                                                  >> ${regexQbit}
+      echo "        \"savePath\": \"${moviesPath}/${year}/\","                           >> ${regexQbit}
+      echo "        \"smartFilter\": false,"                                             >> ${regexQbit}
+      echo "        \"useRegex\": true"                                                  >> ${regexQbit}
+      echo "    },"                                                                      >> ${regexQbit}
+    year=$(( $year + 1 ))
+    done
+    echo "    \"Movies 2021\": {"                                                        >> ${regexQbit}
+    echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
+    echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
+    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"assignedCategory\": \"\","                                           >> ${regexQbit}
+    echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
+    echo "        \"enabled\": true,"                                                    >> ${regexQbit}
+    echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
+    echo "        \"ignoreDays\": 0,"                                                    >> ${regexQbit}
+    echo "        \"lastMatch\": \"\","                                                  >> ${regexQbit}
+    echo "        \"mustContain\": \".*2021.*\","                                        >> ${regexQbit}
+    echo "        \"mustNotContain\": \".*(S[0-9][0-9]).*\","                            >> ${regexQbit}
+    echo "        \"previouslyMatchedEpisodes\": ["                                      >> ${regexQbit}
+    echo "        ],"                                                                    >> ${regexQbit}
+    echo "        \"savePath\": \"${moviesPath}/2021/\","                                >> ${regexQbit}
+    echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
+    echo "        \"useRegex\": true"                                                    >> ${regexQbit}
+    echo "    }"                                                                         >> ${regexQbit}
+    echo "}"                                                                             >> ${regexQbit}
+  fi
+}
