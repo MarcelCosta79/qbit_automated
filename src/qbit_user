@@ -2,13 +2,13 @@
 
 # Com isso ativado, ira baixar sua configuração do rclone já configurada.
 # Requesito: Adicionar um link direto para download da sua conf.
-rcloneDownloadConfig="on"
-rcloneConfig="https://gist.githubusercontent.com/Zonimi/58e1ab4a4513534e0c49f76b88355492/raw/rclone.conf"
+rcloneDownloadConfig="of"
+rcloneConfig="https://..."
 
 # Com isso ativado, seu RSS será adicionado e a organização de filmes, séries e etc feita.
 # Requesitos: Adicionar seu link RSS.
-rssEnable="on"
-urlRSS="https://pirata.digital/rss/57.7b80109fd2c883cae7aea5e3b5da2760"
+rssEnable="off"
+urlRSS="https://..."
 
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".
@@ -19,7 +19,7 @@ filesRemote="files"
 # Com isso ativado, seus arquivos torrents sera baixando do $filesRemote e adicionado no client.
 # Opcional: Se "on", envie seus arquivos .torrents zipado no remote "files" para adicionar durante a instalação.
 # O arquivo DEVE ter o nome de: torrents_latest.zip
-autoTorrents="on"
+autoTorrents="off"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
 crontabEnable="on"
