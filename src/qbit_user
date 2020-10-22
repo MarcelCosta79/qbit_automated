@@ -13,7 +13,6 @@ urlRSS="https://..."
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".
 torrentsFileEnable="on"
-torrentsFileLocal="/home/$USER/qBittorrent/files"
 filesRemote="files"
 
 # Com isso ativado, seus arquivos torrents sera baixando do $filesRemote e adicionado no client.

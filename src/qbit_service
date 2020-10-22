@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source src/qbit_user
-source src/qbit_conf
 
 qbit_service() {
   {
@@ -17,46 +16,4 @@ qbit_service() {
     echo "[Install]"
     echo "WantedBy=multi-user.target"
   } > /etc/systemd/system/qbittorrent-${portWeb}.service
-
-  # Cria pastas necessárias
-  mkdir -p /home/$USER/qBittorrent/downloads/
-  mkdir -p /home/$USER/qBittorrent/files/
-
-  if [ ${autoTorrents} = "on" ]; then
-    # Download dos arquivos .torrent
-    cd /home/$USER/qBittorrent/files/
-    rclone copy ${filesRemote}:torrents_latest.zip ${PWD} --config ${rcloneFilesDir}/config/rclone.conf
-    unzip torrents_latest.zip
-    rm torrents_latest.zip
-
-    # Cria symlinks
-    ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
-    ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
-    ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
-  fi
-
-  # Se ativado, ira adicionas os .torrent já salvo na núvem.
-  if [ ${torrentsFileEnable} = "on" ]; then
-    # Zipar e salvar os .torrents na nuvem.
-    echo "cd /home/$USER/qBittorrent/files/"                                                                                                            >  /usr/bin/uploadFiles
-    echo "zip -r torrents_latest.zip *"                                                                                                                 >> /usr/bin/uploadFiles
-    echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"      >> /usr/bin/uploadFiles
-    echo "rclone move torrents_latest.zip ${filesRemote}: --config ${rcloneFilesDir}/config/rclone.conf"                                                >> /usr/bin/uploadFiles
-    echo "0 * * * * /usr/bin/uploadFiles >/dev/null 2>&1"                                                                                               >> /var/spool/cron/crontabs/root
-    chmod a+x /usr/bin/uploadFiles
-  fi
-
-  # Adiciona conf do script
-  mkdir -p /home/$USER/qBittorrent/config/
-  mkdir -p /home/$USER/qBittorrent/config/rss/
-  qbit_conf
-
-  # Se ativado, adiciona regras e RSS
-  qbit_rss
-  qbit_rules
-
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ ${torrentsFileLocal}/*.torrent
-
-  # Service qBittorrent
-  systemctl enable qbittorrent-${portWeb}.service
 }
