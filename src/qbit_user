@@ -13,7 +13,6 @@ urlRSS="https://..."
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".
 torrentsFileEnable="on"
-torrentsFileLocal="/home/$USER/qBittorrent/files"
 filesRemote="files"
 
 # Com isso ativado, seus arquivos torrents sera baixando do $filesRemote e adicionado no client.
@@ -22,8 +21,9 @@ filesRemote="files"
 autoTorrents="off"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
+# Requesito: autoTorrents ativado(on).
 crontabEnable="on"
-cronMovies="/*/*"                                 # Local onde seus filmes ira ficar. /*/* = $moviesPath/ano/file.mkv
+cronMovies="/*/*"                                 # Local onde seus filmes ira ficar. /*/* = $moviesPath/ano/file.mkv ou pasta
 cronTv="/*"                                       # Local odne suas séries ira ficar. /* = $tvPath/Name.S01...
 cronEps="/*"                                      # Local onde seus episódios avulsos ira ficar. /* = $epsPath/Name.S01E01...
 
