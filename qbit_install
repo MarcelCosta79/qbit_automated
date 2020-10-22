@@ -26,6 +26,7 @@ qbit_service
 # Cria pastas necessárias
 mkdir -p /home/$USER/qBittorrent/downloads/
 mkdir -p /home/$USER/qBittorrent/files/
+mkdir -p /home/$USER/qBittorrent/files_incomplete
 mkdir -p /home/$USER/qBittorrent/config/
 mkdir -p /home/$USER/qBittorrent/config/rss/
 
@@ -57,7 +58,7 @@ qbit_conf
 
 # Download da WebUI
 # if [ $webUI = "on" ]; then
-#   git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/$USER/qBittorrent/config/webUI/
+#   git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/$USER/qBittorrent/config/webUI/VueTorrent/
 # fi
 
 # Se ativado, adiciona regras e RSS
