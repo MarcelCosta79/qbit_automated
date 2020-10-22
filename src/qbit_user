@@ -2,7 +2,7 @@
 
 # Com isso ativado, ira baixar sua configuração do rclone já configurada.
 # Requesito: Adicionar um link direto para download da sua conf.
-rcloneDownloadConfig="of"
+rcloneDownloadConfig="off"
 rcloneConfig="https://..."
 
 # Com isso ativado, seu RSS será adicionado e a organização de filmes, séries e etc feita.
