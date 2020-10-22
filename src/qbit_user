@@ -51,3 +51,14 @@ cacheDir="${rcloneFilesDir}/cache"                # Diretorio onde o cache sera 
 ip=$(curl -kLs "http://api.ipify.org")
 portWeb=$(shuf -i 1000-10000 -n 1)
 portQbit=$(shuf -i 1000-10000 -n 1)
+
+# Script adicionais
+# Scripts adicionado aqui será executado antes de tudo.
+qbit_onStart() {
+  echo ""
+}
+
+# Scripts adicionado aqui será executado depois de tudo.
+qbit_onEnd() {
+  echo ""
+}

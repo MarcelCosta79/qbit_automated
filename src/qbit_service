@@ -51,6 +51,10 @@ qbit_service() {
   mkdir -p /home/$USER/qBittorrent/rss/
   qbit_conf
 
+  # Se ativado, adiciona regras e RSS
+  qbit_rss
+  qbit_rules
+
   qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ ${torrentsFileLocal}/*.torrent
 
   # Service qBittorrent
