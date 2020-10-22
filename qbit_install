@@ -55,6 +55,11 @@ fi
 # Adiciona conf do script
 qbit_conf
 
+# Download da WebUI
+# if [ $webUI = "on" ]; then
+#   git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/$USER/qBittorrent/config/webUI/
+# fi
+
 # Se ativado, adiciona regras e RSS
 qbit_rss
 qbit_rules
@@ -69,20 +74,17 @@ fi
 # Service qBittorrent
 systemctl enable qbittorrent-${portWeb}.service
 
-# Download da WebUI
-# git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/qBittorrent_main/VueTorrent
-
 # Inicia script personalizado
 qbit_onEnd
 
 if [ $rcloneDownloadConfig = "on" ]; then
-  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
   printf "Instalação concluída.\n\n$(tput setaf 7)"
   printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
   printf "Usuário: $(tput setaf 6)admin$(tput setaf 7)\n"
   printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
 else
-  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
   printf "Instalação concluída.\n\n$(tput setaf 7)"
   printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
   printf "Usuário: $(tput setaf 6)pirata$(tput setaf 7)\n"
