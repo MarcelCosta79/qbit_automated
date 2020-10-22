@@ -21,8 +21,9 @@ filesRemote="files"
 autoTorrents="off"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
+# Necessario apenas se o autoTorrents estiver ativado
 crontabEnable="on"
-cronMovies="/*/*"                                 # Local onde seus filmes ira ficar. /*/* = $moviesPath/ano/file.mkv
+cronMovies="/*/*"                                 # Local onde seus filmes ira ficar. /*/* = $moviesPath/ano/file.mkv ou pasta
 cronTv="/*"                                       # Local odne suas séries ira ficar. /* = $tvPath/Name.S01...
 cronEps="/*"                                      # Local onde seus episódios avulsos ira ficar. /* = $epsPath/Name.S01E01...
 

@@ -26,7 +26,7 @@ qbit_service
 # Cria pastas necessárias
 mkdir -p /home/$USER/qBittorrent/downloads/
 mkdir -p /home/$USER/qBittorrent/files/
-mkdir -p /home/$USER/qBittorrent/files_incomplete
+mkdir -p /home/$USER/qBittorrent/files_incomplete/
 mkdir -p /home/$USER/qBittorrent/config/
 mkdir -p /home/$USER/qBittorrent/config/rss/
 
@@ -37,10 +37,12 @@ if [ ${autoTorrents} = "on" ]; then
   unzip torrents_latest.zip
   rm torrents_latest.zip
 
-  # Cria symlinks
-  ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
-  ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
-  ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
+  if [ ${crontabEnable} = "on" ]; then
+    # Cria symlinks
+    ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
+    ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
+    ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
+  fi
 fi
 
 # Zipar e salvar os .torrents na nuvem.
