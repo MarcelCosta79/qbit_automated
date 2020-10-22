@@ -22,20 +22,21 @@ qbit_service() {
   mkdir -p /home/$USER/qBittorrent/downloads/
   mkdir -p /home/$USER/qBittorrent/files/
 
-  # Se ativado, ira adicionas os .torrent já salvo na núvem.
-  if [ ${torrentsFileEnable} = "on" ]; then
-
-    # Cria symlinks
-    ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
-    ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
-    ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
-
+  if [ ${autoTorrents} = "on" ]; then
     # Download dos arquivos .torrent
     cd /home/$USER/qBittorrent/files/
     rclone copy ${filesRemote}:torrents_latest.zip ${PWD} --config ${rcloneFilesDir}/config/rclone.conf
     unzip torrents_latest.zip
     rm torrents_latest.zip
 
+    # Cria symlinks
+    ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
+    ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
+    ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
+  fi
+
+  # Se ativado, ira adicionas os .torrent já salvo na núvem.
+  if [ ${torrentsFileEnable} = "on" ]; then
     # Zipar e salvar os .torrents na nuvem.
     echo "cd /home/$USER/qBittorrent/files/"                                                                                                            >  /usr/bin/uploadFiles
     echo "zip -r torrents_latest.zip *"                                                                                                                 >> /usr/bin/uploadFiles

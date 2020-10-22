@@ -33,7 +33,7 @@ if [ $rcloneDownloadConfig = "on" ]; then
   printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
   printf "Instalação concluída.\n\n$(tput setaf 7)"
   printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
-  printf "Usuário: $(tput setaf 6)pirata$(tput setaf 7)\n"
+  printf "Usuário: $(tput setaf 6)admin$(tput setaf 7)\n"
   printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
 else
   printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
