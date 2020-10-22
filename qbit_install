@@ -69,7 +69,11 @@ qbit_rss
 qbit_rules
 
 # Inicia qBittorrent
-qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ ${torrentsFileLocal}/*.torrent
+if [ ${autoTorrents} = "on" ]; then
+  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ /home/$USER/qBittorrent/files/*.torrent
+else
+  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb}
+fi
 
 # Service qBittorrent
 systemctl enable qbittorrent-${portWeb}.service
