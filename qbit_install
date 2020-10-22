@@ -49,6 +49,7 @@ if [ ${torrentsFileEnable} = "on" ]; then
   echo "zip -r torrents_latest.zip *"                                                                                                                 >> /usr/bin/uploadFiles
   echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"      >> /usr/bin/uploadFiles
   echo "rclone move torrents_latest.zip ${filesRemote}: --config ${rcloneFilesDir}/config/rclone.conf"                                                >> /usr/bin/uploadFiles
+  echo "rm torrents_latest.zip"                                                                                                                       >> /usr/bin/uploadFiles
   echo "0 * * * * /usr/bin/uploadFiles >/dev/null 2>&1"                                                                                               >> /var/spool/cron/crontabs/root
   chmod a+x /usr/bin/uploadFiles
 fi
@@ -66,11 +67,7 @@ qbit_rss
 qbit_rules
 
 # Inicia qBittorrent
-if [ $autoTorrents = "on" ]; then
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ ${torrentsFileLocal}/*.torrent
-else
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb}
-fi
+qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ ${torrentsFileLocal}/*.torrent
 
 # Service qBittorrent
 systemctl enable qbittorrent-${portWeb}.service
