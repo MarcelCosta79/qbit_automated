@@ -48,7 +48,7 @@ qbit_service() {
 
   # Adiciona conf do script
   mkdir -p /home/$USER/qBittorrent/config/
-  mkdir -p /home/$USER/qBittorrent/rss/
+  mkdir -p /home/$USER/qBittorrent/config/rss/
   qbit_conf
 
   # Se ativado, adiciona regras e RSS
