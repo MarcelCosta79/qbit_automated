@@ -11,10 +11,13 @@ source src/qbit_conf
 apt install unzip -y; apt install zip -y;
 add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
 apt install qbittorrent-nox -y
-adduser --system --group qbittorrent-nox
-adduser $USER qbittorrent-nox
+#adduser --system --group qbittorrent-nox
+#adduser $USER qbittorrent-nox
 mkdir -p /home/$USER
 curl https://rclone.org/install.sh | sudo bash
+
+# Inicia script personalizado
+qbit_onStart
 
 # Configura e monta remotes do rclone
 qbit_rclone
@@ -22,12 +25,11 @@ qbit_rclone
 # Inicia qBittorrent
 qbit_service
 
-# Se ativado, adiciona regras e RSS
-qbit_rss
-qbit_rules
-
 # Download da WebUI
 # git clone --single-branch --branch latest-release https://github.com/WDaan/VueTorrent.git /home/qBittorrent_main/VueTorrent
+
+# Inicia script personalizado
+qbit_onEnd
 
 if [ $rcloneDownloadConfig = "on" ]; then
   printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
