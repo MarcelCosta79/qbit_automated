@@ -82,6 +82,7 @@ qbit_rclone () {
     systemctl restart ${moviesRemote}.service
     echo "Verificando mount, aguarde"
   while ! test -f "${moviesPath}/check"; do
+    printf "."
     sleep 2
   done
     rm ${moviesPath}/check
