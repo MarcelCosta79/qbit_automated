@@ -24,7 +24,7 @@ autoTorrents="off"
 enableCourses="off"
 courseRemote="courses"
 coursePath="/courses"
-cacheCourses="1000G"
+cacheCourses="100G"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
 # Requesito: autoTorrents ativado(on).
