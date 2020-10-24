@@ -74,8 +74,6 @@ qbit_rclone () {
 
   # Inicia os serviços
   if [ ${rcloneDownloadConfig} = "on" ]; then
-    mkdir -p ${rcloneFilesDir}/config/
-    wget $rcloneConfig -P ${rcloneFilesDir}/config/
     systemctl enable ${moviesRemote}.service
     systemctl enable ${tvRemote}.service
     systemctl enable ${epsRemote}.service

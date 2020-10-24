@@ -14,6 +14,12 @@ apt install qbittorrent-nox -y
 curl https://rclone.org/install.sh | sudo bash
 mkdir -p /home/$USER
 
+# Download da config do rclone
+if [ ${rcloneDownloadConfig} = "on" ]; then
+  mkdir -p ${rcloneFilesDir}/config/
+  wget $rcloneConfig -P ${rcloneFilesDir}/config/
+fi
+
 # Inicia script personalizado
 qbit_onStart
 
