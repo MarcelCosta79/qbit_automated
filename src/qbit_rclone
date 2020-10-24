@@ -4,48 +4,55 @@ source src/qbit_user
 
 qbit_rclone () {
   service="/etc/systemd/system/"
-  serviceNames="${service}${moviesRemote}.service ${service}${tvRemote}.service ${service}${epsRemote}.service"
+  if [ ${enableCourses} = "on" ]; then
+    serviceNames="${service}${moviesRemote}.service ${service}${tvRemote}.service ${service}${epsRemote}.service ${service}${courseRemote}.service"
+  else
+    serviceNames="${service}${moviesRemote}.service ${service}${tvRemote}.service ${service}${epsRemote}.service"
+  fi
   for remotes in ${serviceNames}; do
-    echo "[Unit]"                                                                        >  ${remotes}
-    echo "Description=Rclone mount "                                                     >> ${remotes}
-    echo "AssertPathIsDirectory=PATH"                                                    >> ${remotes}
-    echo "After=network-online.target"                                                   >> ${remotes}
-    echo ""                                                                              >> ${remotes}
-    echo "[Service]"                                                                     >> ${remotes}
-    echo "Type=simple"                                                                   >> ${remotes}
-    echo "ExecStart=/usr/bin/rclone mount \\"                                            >> ${remotes}
-    echo "    --umask 0 \\"                                                              >> ${remotes}
-    echo "    --allow-other \\"                                                          >> ${remotes}
-    echo "    --tpslimit 9 \\"                                                           >> ${remotes}
-    echo "    --tpslimit-burst 10 \\"                                                     >> ${remotes}
-    echo "    --transfers 8 \\"                                                          >> ${remotes}
-    echo "    --config ${rcloneFilesDir}/config/rclone.conf \\"                          >> ${remotes}
-    echo "    --dir-cache-time 672h \\"                                                  >> ${remotes}
-    echo "    --vfs-cache-mode full \\"                                                  >> ${remotes}
-    echo "    --vfs-cache-max-size CACHE \\"                                             >> ${remotes}
-    echo "    --vfs-cache-max-age 675h \\"                                               >> ${remotes}
-    echo "    --vfs-read-chunk-size 4M \\"                                               >> ${remotes}
-    echo "    --vfs-read-chunk-size-limit 8M \\"                                         >> ${remotes}
-    echo "    --drive-chunk-size 256M \\"                                                >> ${remotes}
-    echo "    --drive-stop-on-upload-limit \\"                                           >> ${remotes}
-    echo "    --buffer-size 4M \\"                                                       >> ${remotes}
-    echo "    --poll-interval 60s \\"                                                    >> ${remotes}
-    echo "    --cache-dir ${cacheDir} \\"                                                >> ${remotes}
-    echo "    --log-file ${rcloneFilesDir}/logs/REMOTE \\"                               >> ${remotes}
-    echo "    --log-level INFO \\"                                                       >> ${remotes}
-    echo "    REMOTE: PATH"                                                              >> ${remotes}
-    echo "ExecStop=/bin/fusermount -u PATH"                                              >> ${remotes}
-    echo "Restart=on-failure"                                                            >> ${remotes}
-    echo "RestartSec=10"                                                                 >> ${remotes}
-    echo ""                                                                              >> ${remotes}
-    echo "[Install]"                                                                     >> ${remotes}
-    echo "WantedBy=default.target"                                                       >> ${remotes}
+    echo "[Unit]"                                                                           >  ${remotes}
+    echo "Description=Rclone mount "                                                        >> ${remotes}
+    echo "AssertPathIsDirectory=PATH"                                                       >> ${remotes}
+    echo "After=network-online.target"                                                      >> ${remotes}
+    echo ""                                                                                 >> ${remotes}
+    echo "[Service]"                                                                        >> ${remotes}
+    echo "Type=simple"                                                                      >> ${remotes}
+    echo "ExecStart=/usr/bin/rclone mount \\"                                               >> ${remotes}
+    echo "    --umask 0 \\"                                                                 >> ${remotes}
+    echo "    --allow-other \\"                                                             >> ${remotes}
+    echo "    --tpslimit 9 \\"                                                              >> ${remotes}
+    echo "    --tpslimit-burst 10 \\"                                                       >> ${remotes}
+    echo "    --transfers 8 \\"                                                             >> ${remotes}
+    echo "    --config ${rcloneFilesDir}/config/rclone.conf \\"                             >> ${remotes}
+    echo "    --dir-cache-time 672h \\"                                                     >> ${remotes}
+    echo "    --vfs-cache-mode full \\"                                                     >> ${remotes}
+    echo "    --vfs-cache-max-size CACHE \\"                                                >> ${remotes}
+    echo "    --vfs-cache-max-age 675h \\"                                                  >> ${remotes}
+    echo "    --vfs-read-chunk-size 4M \\"                                                  >> ${remotes}
+    echo "    --vfs-read-chunk-size-limit 8M \\"                                            >> ${remotes}
+    echo "    --drive-chunk-size 256M \\"                                                   >> ${remotes}
+    echo "    --drive-stop-on-upload-limit \\"                                              >> ${remotes}
+    echo "    --buffer-size 4M \\"                                                          >> ${remotes}
+    echo "    --poll-interval 60s \\"                                                       >> ${remotes}
+    echo "    --cache-dir ${cacheDir} \\"                                                   >> ${remotes}
+    echo "    --log-file ${rcloneFilesDir}/logs/REMOTE \\"                                  >> ${remotes}
+    echo "    --log-level INFO \\"                                                          >> ${remotes}
+    echo "    REMOTE: PATH"                                                                 >> ${remotes}
+    echo "ExecStop=/bin/fusermount -u PATH"                                                 >> ${remotes}
+    echo "Restart=on-failure"                                                               >> ${remotes}
+    echo "RestartSec=10"                                                                    >> ${remotes}
+    echo ""                                                                                 >> ${remotes}
+    echo "[Install]"                                                                        >> ${remotes}
+    echo "WantedBy=default.target"                                                          >> ${remotes}
   done
 
   # Edita os serviços
-  sed -i "s|PATH|${moviesPath}|g; s|CACHE|${cacheMovie}|g; s|REMOTE|${moviesRemote}|g"   ${service}${moviesRemote}.service
-  sed -i "s|PATH|${tvPath}|g; s|CACHE|${cacheTv}|g; s|REMOTE|${tvRemote}|g"              ${service}${tvRemote}.service
-  sed -i "s|PATH|${epsPath}|g; s|CACHE|${cacheEps}|g; s|REMOTE|${epsRemote}|g"           ${service}${epsRemote}.service
+  if [ ${enableCourses} = "on" ]; then
+    sed -i "s|PATH|${coursePath}|g; s|CACHE|${cacheCourses}|g; s|REMOTE|${courseRemote}|g"  ${service}${courseRemote}.service
+  fi
+  sed -i "s|PATH|${moviesPath}|g; s|CACHE|${cacheMovie}|g; s|REMOTE|${moviesRemote}|g"      ${service}${moviesRemote}.service
+  sed -i "s|PATH|${tvPath}|g; s|CACHE|${cacheTv}|g; s|REMOTE|${tvRemote}|g"                 ${service}${tvRemote}.service
+  sed -i "s|PATH|${epsPath}|g; s|CACHE|${cacheEps}|g; s|REMOTE|${epsRemote}|g"              ${service}${epsRemote}.service
   systemctl daemon-reload
 
   # Cria pastas necessarias
@@ -53,7 +60,11 @@ qbit_rclone () {
   mkdir -p ${rcloneFilesDir}/logs
 
   # Verifica e cria as pasta do rclone.
-  pathRcloneCheck="${moviesPath} ${tvPath} ${epsPath}"
+  if [ ${enableCourses} = "on" ]; then
+    pathRcloneCheck="${moviesPath} ${tvPath} ${epsPath} ${coursePath}"
+  else
+    pathRcloneCheck="${moviesPath} ${tvPath} ${epsPath}"
+  fi
   for value in ${pathRcloneCheck}; do
     if [ ! -d "${value}" ]; then
       mkdir -p ${value}
@@ -70,10 +81,17 @@ qbit_rclone () {
     systemctl start ${moviesRemote}.service
     systemctl start ${tvRemote}.service
     systemctl start ${epsRemote}.service
+    if [ ${enableCourses} = "on" ]; then
+      systemctl enable ${courseRemote}.service
+      systemctl start ${courseRemote}.service
+    fi
   else
     systemctl enable ${moviesRemote}.service
     systemctl enable ${tvRemote}.service
     systemctl enable ${epsRemote}.service
+    if [ ${enableCourses} = "on" ]; then
+      systemctl enable ${courseRemote}.service
+    fi
   fi
 
   if [ ${rcloneDownloadConfig} = "on" ]; then
