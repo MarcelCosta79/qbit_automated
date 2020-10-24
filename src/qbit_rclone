@@ -23,6 +23,7 @@ qbit_rclone () {
     echo "    --tpslimit 9 \\"                                                              >> ${remotes}
     echo "    --tpslimit-burst 10 \\"                                                       >> ${remotes}
     echo "    --transfers 8 \\"                                                             >> ${remotes}
+    echo "    --checkers 16 \\"                                                             >> ${remotes}
     echo "    --config ${rcloneFilesDir}/config/rclone.conf \\"                             >> ${remotes}
     echo "    --dir-cache-time 672h \\"                                                     >> ${remotes}
     echo "    --vfs-cache-mode full \\"                                                     >> ${remotes}

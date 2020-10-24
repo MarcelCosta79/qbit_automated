@@ -59,12 +59,17 @@ portWeb=$(shuf -i 1000-10000 -n 1)
 portQbit=$(shuf -i 1000-10000 -n 1)
 
 # Script adicionais
-# Scripts adicionado aqui será executado antes de tudo.
+# Scripts adicionado aqui será executado de antes de inicir a instalação.
 qbit_onStart() {
   echo ""
+  # Exemplo - Download SAs
+  # wget LINKDIRETO -P /home/$USER/rclone/sas/
+  # unzip /home/$USER/rclone/sas/sas.zip -d /home/$USER/rclone/sas/
+  # rm /home/$USER/rclone/sas/sas.zip
+  # sed -i "s|USER|$USER|g;" ${rcloneFilesDir}/config/rclone.conf
 }
 
-# Scripts adicionado aqui será executado depois de tudo.
+# Scripts adicionado aqui será executado após a instalação completa.
 qbit_onEnd() {
   echo ""
 }
