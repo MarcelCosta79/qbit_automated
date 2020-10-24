@@ -22,8 +22,8 @@ autoTorrents="off"
 
 # Adicionar remote para cursos
 enableCourses="off"
-courseRemote="course"
-coursePath="/course"
+courseRemote="courses"
+coursePath="/courses"
 cacheCourses="1000G"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
