@@ -8,6 +8,9 @@ qbit_conf() {
     echo "enabled=false"
     echo "program="
     echo ""
+
+    echo "[BitTorrent]"
+    echo "Session\Categories=@Variant(\0\0\0\b\0\0\0\x3\0\0\0\x4\0t\0v\0\0\0\n\0\0\0\0\0\0\0\f\0m\0o\0v\0i\0\x65\0s\0\0\0\n\0\0\0\0\0\0\0\x10\0\x65\0p\0i\0s\0o\0\x64\0\x65\0s\0\0\0\n\0\0\0\0)"
     echo "[LegalNotice]"
     echo "Accepted=true"
     echo ""

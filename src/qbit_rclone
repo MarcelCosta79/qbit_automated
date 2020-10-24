@@ -94,6 +94,7 @@ qbit_rclone () {
     fi
   fi
 
+  # Verifica se o mount está correto
   if [ ${rcloneDownloadConfig} = "on" ]; then
     touch ${PWD}/check
     rclone copy ${PWD}/check ${moviesRemote}: --config ${rcloneFilesDir}/config/rclone.conf
