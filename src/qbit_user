@@ -3,12 +3,13 @@
 # Com isso ativado, ira baixar sua configuração do rclone já configurada.
 # Requesito: Adicionar um link direto para download da sua conf.
 rcloneDownloadConfig="off"
-rcloneConfig="https://..."
+rcloneConfig=""
 
 # Com isso ativado, seu RSS será adicionado e a organização de filmes, séries e etc feita.
 # Requesitos: Adicionar seu link RSS.
 rssEnable="off"
-urlRSS="https://..."
+urlMoviesRSS=""
+urlTvRSS=""
 
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".

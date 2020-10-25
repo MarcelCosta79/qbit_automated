@@ -12,3 +12,19 @@ qbit_rss() {
     echo "}" >>${rssLink}
   fi
 }
+
+qbit_rss() {
+  if [ $rssEnable = "on" ]; then
+    rssLink="/home/$USER/qBittorrent/config/rss/feeds.json"
+    {
+      echo "{"
+      echo "    \"Movies\": {"
+      echo "        \"url\": \"${urlMoviesRSS}\""
+      echo "    },"
+      echo "    \"TVShows\": {"
+      echo "        \"url\": \"${urlTvRSS}\""
+      echo "    }"
+      echo "}"
+    } > ${rssLink}
+  fi
+}

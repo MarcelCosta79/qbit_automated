@@ -9,7 +9,7 @@ qbit_rules () {
     echo "    \"TVShows\": {"                                                            >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
-    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "            \"${urlTvRSS}\""                                                   >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
     echo "        \"assignedCategory\": \"tv\","                                         >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
@@ -28,7 +28,7 @@ qbit_rules () {
     echo "    \"Episodes\": {"                                                           >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
-    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "            \"${urlTvRSS}\""                                                   >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
     echo "        \"assignedCategory\": \"episodes\","                                   >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
@@ -47,7 +47,7 @@ qbit_rules () {
     echo "    \"Movies 1960\": {"                                                        >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
-    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "            \"${urlMoviesRSS}\""                                               >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
     echo "        \"assignedCategory\": \"movies\","                                     >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
@@ -69,7 +69,7 @@ qbit_rules () {
       echo "    \"Movies ${year}\": {"                                                   >> ${regexQbit}
       echo "        \"addPaused\": false,"                                               >> ${regexQbit}
       echo "        \"affectedFeeds\": ["                                                >> ${regexQbit}
-      echo "            \"${urlRSS}\""                                                   >> ${regexQbit}
+      echo "            \"${urlMoviesRSS}\""                                             >> ${regexQbit}
       echo "        ],"                                                                  >> ${regexQbit}
       echo "        \"assignedCategory\": \"movies\","                                   >> ${regexQbit}
       echo "        \"createSubfolder\": null,"                                          >> ${regexQbit}
@@ -90,7 +90,7 @@ qbit_rules () {
     echo "    \"Movies 2021\": {"                                                        >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
-    echo "            \"${urlRSS}\""                                                     >> ${regexQbit}
+    echo "            \"${urlMoviesRSS}\""                                               >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
     echo "        \"assignedCategory\": \"movies\","                                     >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
