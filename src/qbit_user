@@ -20,6 +20,12 @@ filesRemote="files"
 # O arquivo DEVE ter o nome de: torrents_latest.zip
 autoTorrents="off"
 
+# Adicionar remote para cursos
+enableCourses="off"
+courseRemote="courses"
+coursePath="/courses"
+cacheCourses="100G"
+
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
 # Requesito: autoTorrents ativado(on).
 crontabEnable="on"
@@ -53,12 +59,17 @@ portWeb=$(shuf -i 1000-10000 -n 1)
 portQbit=$(shuf -i 1000-10000 -n 1)
 
 # Script adicionais
-# Scripts adicionado aqui será executado antes de tudo.
+# Scripts adicionado aqui será executado de antes de inicir a instalação.
 qbit_onStart() {
   echo ""
+  # Exemplo - Download SAs
+  # wget LINKDIRETO -P /home/$USER/rclone/sas/
+  # unzip /home/$USER/rclone/sas/sas.zip -d /home/$USER/rclone/sas/
+  # rm /home/$USER/rclone/sas/sas.zip
+  # sed -i "s|USER|$USER|g;" ${rcloneFilesDir}/config/rclone.conf
 }
 
-# Scripts adicionado aqui será executado depois de tudo.
+# Scripts adicionado aqui será executado após a instalação completa.
 qbit_onEnd() {
   echo ""
 }

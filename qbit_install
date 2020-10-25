@@ -14,6 +14,12 @@ apt install qbittorrent-nox -y
 curl https://rclone.org/install.sh | sudo bash
 mkdir -p /home/$USER
 
+# Download da config do rclone
+if [ ${rcloneDownloadConfig} = "on" ]; then
+  mkdir -p ${rcloneFilesDir}/config/
+  wget $rcloneConfig -P ${rcloneFilesDir}/config/
+fi
+
 # Inicia script personalizado
 qbit_onStart
 
@@ -48,11 +54,11 @@ fi
 # Zipar e salvar os .torrents na nuvem.
 if [ ${torrentsFileEnable} = "on" ]; then
   echo "cd /home/$USER/qBittorrent/files/"                                                                                                            >  /usr/bin/uploadFiles
-  echo "zip -r torrents_latest.zip *"                                                                                                                 >> /usr/bin/uploadFiles
-  echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"      >> /usr/bin/uploadFiles
-  echo "rclone move torrents_latest.zip ${filesRemote}: --config ${rcloneFilesDir}/config/rclone.conf"                                                >> /usr/bin/uploadFiles
-  echo "rm torrents_latest.zip"                                                                                                                       >> /usr/bin/uploadFiles
-  echo "0 * * * * /usr/bin/uploadFiles >/dev/null 2>&1"                                                                                               >> /var/spool/cron/crontabs/root
+  echo "zip -r torrents_latest.zip *.torrent"                                                                                                         >> /usr/bin/uploadFiles
+  echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"     >> /usr/bin/uploadFiles
+  echo "sleep 60"                                                                                                                                     >> /usr/bin/uploadFiles
+  echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --config ${rcloneFilesDir}/config/rclone.conf"                                     >> /usr/bin/uploadFiles
+  echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                            >> /var/spool/cron/crontabs/root
   chmod a+x /usr/bin/uploadFiles
 fi
 
@@ -70,7 +76,7 @@ qbit_rules
 
 # Inicia qBittorrent
 if [ ${autoTorrents} = "on" ]; then
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ /home/$USER/qBittorrent/files/*.torrent
+  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --category=autoTorrents --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ /home/$USER/qBittorrent/files/*.torrent
 else
   qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb}
 fi
@@ -81,26 +87,45 @@ systemctl enable qbittorrent-${portWeb}.service
 # Inicia script personalizado
 qbit_onEnd
 
+# Cores
+green=$(tput setaf 2)
+blue=$(tput setaf 6)
+white=$(tput setaf 7)
+normal=$(tput sgr0)
+format="%s${normal}\n"
+
 if [ $rcloneDownloadConfig = "on" ]; then
   printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-  printf "Instalação concluída.\n\n$(tput setaf 7)"
-  printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
-  printf "Usuário: $(tput setaf 6)admin$(tput setaf 7)\n"
-  printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
+  printf $format "${green}Instalação concluída."
+  printf "\n"
+  printf $format "${white}Acesse: ${blue}http://${ip}:${portWeb}/"
+  printf $format "${white}Usuário: ${blue}admin"
+  printf $format "${white}Senha: ${blue}adminadmin"
+  printf "\n\n"
 else
   printf "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-  printf "Instalação concluída.\n\n$(tput setaf 7)"
-  printf "Acesse: $(tput setaf 6)http://${ip}:${portWeb}/$(tput setaf 7)\n"
-  printf "Usuário: $(tput setaf 6)pirata$(tput setaf 7)\n"
-  printf "Senha: $(tput setaf 6)adminadmin$(tput setaf 7)\n\n"
-  printf "Você não adicionou sua config do rclone\nno script, portanto devera fazer isso agora.\n"
-  printf "Execute o comando: $(tput setaf 6)rclone config --config /home/rclone/rclone.conf$(tput setaf 7)\n\n"
-  printf "Conforme definido no script, você precisa criar os remotes;\n\n"
-  printf "    $(tput setaf 6)$moviesRemote$(tput setaf 7) para os filmes.\n"
-  printf "    $(tput setaf 6)$tvRemote$(tput setaf 7) para as séries\n"
-  printf "    $(tput setaf 6)$epsRemote$(tput setaf 7) para os episódios avulsos.\n"
+  printf $format "${green}Instalação concluída."
+  printf "\n"
+  printf $format "${white}Acesse: ${blue}http://${ip}:${portWeb}/"
+  printf $format "${white}Usuário: ${blue}admin"
+  printf $format "${white}Senha: ${blue}adminadmin"
+  printf "\n"
+  printf $format "${white}Você não adicionou sua config do rclone no script,"
+  printf $format "${white}portanto devera fazer isso agora."
+  printf "\n"
+  printf $format "${white}Execute o comando: ${blue}rclone config --config /home/$USER/rclone/config/rclone.conf"
+  printf $format "${white}E conforme definido no script, você precisa criar os remotes com os seguintes nomes;"
+  printf "\n"
+  printf $format "  ${blue}$moviesRemote ${white}para os filmes."
+  printf $format "  ${blue}$tvRemote ${white}para as séries"
+  printf $format "  ${blue}$epsRemote ${white}para os episódios avulsos."
   if [ $torrentsFileEnable = "on" ]; then
-    printf "    $(tput setaf 6)$filesRemote$(tput setaf 7) para os arquivos .torrent.\n\n"
+    printf $format "  ${blue}$filesRemote ${white}para os arquivos .torrent."
+    printf "\n"
+  else
+    printf "\n"
   fi
-  printf "Após ter configurado\nexecute o comando: $(tput setaf 6)sudo systemctl start {tv.service,movie.service,eps.service}$(tput setaf 7)\n\n\n"
+  printf $format "${white}Após ter configurado execute o comando;"
+  printf $format "${blue}sudo systemctl start {${tvRemote}.service,${moviesRemote}.service,${epsRemote}.service}"
+  printf "\n\n"
 fi
