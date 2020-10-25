@@ -9,7 +9,7 @@ rcloneConfig=""
 # Requesitos: Adicionar seu link RSS.
 rssEnable="off"
 urlMoviesRSS=""
-urlTvRSS=""
+urlTvRSS="${urlMoviesRSS}"                        # Apague ${urlMoviesRSS} e adicione um link caso queira usar um RSS para cada categoria.
 
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".
