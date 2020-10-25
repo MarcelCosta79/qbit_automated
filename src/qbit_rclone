@@ -98,6 +98,8 @@ qbit_rclone () {
     touch ${PWD}/check
     rclone copy ${PWD}/check ${moviesRemote}: --config ${rcloneFilesDir}/config/rclone.conf
     systemctl restart ${moviesRemote}.service
+    echo "$(tput civis)"
+    printf "\n\n\n"
     echo "Verificando mount, aguarde"
   while ! test -f "${moviesPath}/check"; do
     printf "."
@@ -106,6 +108,7 @@ qbit_rclone () {
     rm ${moviesPath}/check
     rm ${PWD}/check
   fi
+  echo "$(tput cnorm)"
 
   # Cria pasta dos anos em $moviesPath
   if [ ${rcloneDownloadConfig} = "on" ]; then
