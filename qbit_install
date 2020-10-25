@@ -54,11 +54,11 @@ fi
 # Zipar e salvar os .torrents na nuvem.
 if [ ${torrentsFileEnable} = "on" ]; then
   echo "cd /home/$USER/qBittorrent/files/"                                                                                                            >  /usr/bin/uploadFiles
-  echo "zip -r torrents_latest.zip *"                                                                                                                 >> /usr/bin/uploadFiles
+  echo "zip -r torrents_latest.zip *.torrent"                                                                                                         >> /usr/bin/uploadFiles
   echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"     >> /usr/bin/uploadFiles
+  echo "sleep 60"                                                                                                                                     >> /usr/bin/uploadFiles
   echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --config ${rcloneFilesDir}/config/rclone.conf"                                     >> /usr/bin/uploadFiles
-  echo "rm torrents_latest.zip"                                                                                                                       >> /usr/bin/uploadFiles
-  echo "0 * * * * /usr/bin/uploadFiles >/dev/null 2>&1"                                                                                               >> /var/spool/cron/crontabs/root
+  echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                            >> /var/spool/cron/crontabs/root
   chmod a+x /usr/bin/uploadFiles
 fi
 
