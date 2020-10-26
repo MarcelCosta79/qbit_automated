@@ -7,6 +7,9 @@ source src/qbit_rss
 source src/qbit_rules
 source src/qbit_conf
 
+# Define timezone
+sudo timedatectl set-timezone America/Sao_Paulo
+
 # Instala dependencias
 apt install unzip -y; apt install zip -y;
 add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
