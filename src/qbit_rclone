@@ -21,16 +21,16 @@ qbit_rclone () {
     echo "    --umask 0 \\"                                                                 >> ${remotes}
     echo "    --allow-other \\"                                                             >> ${remotes}
     echo "    --tpslimit 9 \\"                                                              >> ${remotes}
-    echo "    --tpslimit-burst 10 \\"                                                       >> ${remotes}
-    echo "    --transfers 8 \\"                                                             >> ${remotes}
-    echo "    --checkers 16 \\"                                                             >> ${remotes}
+    echo "    --tpslimit-burst 5 \\"                                                        >> ${remotes}
+    echo "    --transfers 6 \\"                                                             >> ${remotes}
+    echo "    --checkers 10 \\"                                                             >> ${remotes}
     echo "    --config ${rcloneFilesDir}/config/rclone.conf \\"                             >> ${remotes}
     echo "    --dir-cache-time 672h \\"                                                     >> ${remotes}
     echo "    --vfs-cache-mode full \\"                                                     >> ${remotes}
     echo "    --vfs-cache-max-size CACHE \\"                                                >> ${remotes}
     echo "    --vfs-cache-max-age 675h \\"                                                  >> ${remotes}
     echo "    --vfs-read-chunk-size 4M \\"                                                  >> ${remotes}
-    echo "    --vfs-read-chunk-size-limit 8M \\"                                            >> ${remotes}
+    echo "    --vfs-read-chunk-size-limit 16M \\"                                           >> ${remotes}
     echo "    --drive-chunk-size 256M \\"                                                   >> ${remotes}
     echo "    --drive-stop-on-upload-limit \\"                                              >> ${remotes}
     echo "    --buffer-size 4M \\"                                                          >> ${remotes}

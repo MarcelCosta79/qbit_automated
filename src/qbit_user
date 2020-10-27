@@ -14,7 +14,7 @@ urlTvRSS="${urlMoviesRSS}"                        # Apague ${urlMoviesRSS} e adi
 # Com isso ativado, todos os .torrents adicionados será salvo no seu drive.
 # Requesito: criar um remote no rclone com nome de "files".
 torrentsFileEnable="on"
-filesRemote="files"
+filesRemote="Arquivos"
 
 # Com isso ativado, seus arquivos torrents sera baixando do $filesRemote e adicionado no client.
 # Opcional: Se "on", envie seus arquivos .torrents zipado no remote "files" para adicionar durante a instalação.
@@ -23,8 +23,8 @@ autoTorrents="off"
 
 # Adicionar remote para cursos
 enableCourses="off"
-courseRemote="courses"
-coursePath="/courses"
+courseRemote="Cursos"
+coursePath="/cursos"
 cacheCourses="100G"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
@@ -35,14 +35,14 @@ cronTv="/*"                                       # Local odne suas séries ira 
 cronEps="/*"                                      # Local onde seus episódios avulsos ira ficar. /* = $epsPath/Name.S01E01...
 
 # Pastas e arquivos do rclone.
-moviesPath="/movies"                              # Pasta onde sera montado o drive contendo os filmes.
-tvPath="/tv"                                      # Pasta onde sera montado o drive contendo as séries.
-epsPath="/eps"                                    # Pasta onde sera montado o drive contendo os episódios.
+moviesPath="/filmes"                              # Pasta onde sera montado o drive contendo os filmes.
+tvPath="/series"                                  # Pasta onde sera montado o drive contendo as séries.
+epsPath="/episodios"                              # Pasta onde sera montado o drive contendo os episódios.
 
 # Nomes dos remote adicionados no rclone.
-moviesRemote="movies"                             # Insira o nome que você inseriu no rclone para o remote de filmes.
-tvRemote="tv"                                     # Insira o nome que você inseriu no rclone para o remote de séries.
-epsRemote="eps"                                   # Insira o nome que você inseriu no rclone para o remote de episódios.
+moviesRemote="Filmes"                             # Insira o nome que você inseriu no rclone para o remote de filmes.
+tvRemote="Series"                                 # Insira o nome que você inseriu no rclone para o remote de séries.
+epsRemote="Episodios"                             # Insira o nome que você inseriu no rclone para o remote de episódios.
 
 # Local onde sera salvo os arquivos do rclone.
 rcloneFilesDir="/home/$USER/rclone"
