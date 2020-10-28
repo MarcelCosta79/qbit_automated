@@ -60,7 +60,7 @@ if [ ${torrentsFileEnable} = "on" ]; then
   echo "zip -r torrents_latest.zip *.torrent"                                                                                                         >> /usr/bin/uploadFiles
   echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"     >> /usr/bin/uploadFiles
   echo "sleep 60"                                                                                                                                     >> /usr/bin/uploadFiles
-  echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --drive-chunk-size=16M --config ${rcloneFilesDir}/config/rclone.conf"                                     >> /usr/bin/uploadFiles
+  echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --drive-chunk-size=16M --config ${rcloneFilesDir}/config/rclone.conf"              >> /usr/bin/uploadFiles
   chmod a+x /usr/bin/uploadFiles
 
   # Cria regra no crontab

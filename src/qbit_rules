@@ -6,12 +6,12 @@ qbit_rules () {
   if [ $rssEnable = "on" ]; then
     regexQbit="/home/$USER/qBittorrent/config/rss/download_rules.json"
     echo "{"                                                                             > ${regexQbit}
-    echo "    \"TVShows\": {"                                                            >> ${regexQbit}
+    echo "    \"Séries\": {"                                                             >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
     echo "            \"${urlTvRSS}\""                                                   >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
-    echo "        \"assignedCategory\": \"tv\","                                         >> ${regexQbit}
+    echo "        \"assignedCategory\": \"Séries\","                                     >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
     echo "        \"enabled\": true,"                                                    >> ${regexQbit}
     echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
@@ -25,12 +25,12 @@ qbit_rules () {
     echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
     echo "        \"useRegex\": true"                                                    >> ${regexQbit}
     echo "    },"                                                                        >> ${regexQbit}
-    echo "    \"Episodes\": {"                                                           >> ${regexQbit}
+    echo "    \"Episódios\": {"                                                          >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
     echo "            \"${urlTvRSS}\""                                                   >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
-    echo "        \"assignedCategory\": \"episodes\","                                   >> ${regexQbit}
+    echo "        \"assignedCategory\": \"Episódios\","                                  >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
     echo "        \"enabled\": true,"                                                    >> ${regexQbit}
     echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
@@ -44,12 +44,12 @@ qbit_rules () {
     echo "        \"smartFilter\": false,"                                               >> ${regexQbit}
     echo "        \"useRegex\": true"                                                    >> ${regexQbit}
     echo "    },"                                                                        >> ${regexQbit}
-    echo "    \"Movies 1960\": {"                                                        >> ${regexQbit}
+    echo "    \"Filmes de 1960\": {"                                                     >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
     echo "            \"${urlMoviesRSS}\""                                               >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
-    echo "        \"assignedCategory\": \"movies\","                                     >> ${regexQbit}
+    echo "        \"assignedCategory\": \"Filmes\","                                     >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
     echo "        \"enabled\": true,"                                                    >> ${regexQbit}
     echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}
@@ -66,12 +66,12 @@ qbit_rules () {
     year=1961
     while [ $year -le 2020 ]
     do
-      echo "    \"Movies ${year}\": {"                                                   >> ${regexQbit}
+      echo "    \"MFilmes de ${year}\": {"                                               >> ${regexQbit}
       echo "        \"addPaused\": false,"                                               >> ${regexQbit}
       echo "        \"affectedFeeds\": ["                                                >> ${regexQbit}
       echo "            \"${urlMoviesRSS}\""                                             >> ${regexQbit}
       echo "        ],"                                                                  >> ${regexQbit}
-      echo "        \"assignedCategory\": \"movies\","                                   >> ${regexQbit}
+      echo "        \"assignedCategory\": \"Filmes\","                                   >> ${regexQbit}
       echo "        \"createSubfolder\": null,"                                          >> ${regexQbit}
       echo "        \"enabled\": true,"                                                  >> ${regexQbit}
       echo "        \"episodeFilter\": \"\","                                            >> ${regexQbit}
@@ -87,12 +87,12 @@ qbit_rules () {
       echo "    },"                                                                      >> ${regexQbit}
     year=$(( $year + 1 ))
     done
-    echo "    \"Movies 2021\": {"                                                        >> ${regexQbit}
+    echo "    \"Filmes de 2021\": {"                                                     >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}
     echo "        \"affectedFeeds\": ["                                                  >> ${regexQbit}
     echo "            \"${urlMoviesRSS}\""                                               >> ${regexQbit}
     echo "        ],"                                                                    >> ${regexQbit}
-    echo "        \"assignedCategory\": \"movies\","                                     >> ${regexQbit}
+    echo "        \"assignedCategory\": \"Filmes\","                                     >> ${regexQbit}
     echo "        \"createSubfolder\": null,"                                            >> ${regexQbit}
     echo "        \"enabled\": true,"                                                    >> ${regexQbit}
     echo "        \"episodeFilter\": \"\","                                              >> ${regexQbit}

@@ -7,10 +7,10 @@ qbit_rss() {
     rssLink="/home/$USER/qBittorrent/config/rss/feeds.json"
     {
       echo "{"
-      echo "    \"Movies\": {"
+      echo "    \"Filmes\": {"
       echo "        \"url\": \"${urlMoviesRSS}\""
       echo "    },"
-      echo "    \"TVShows\": {"
+      echo "    \"Séries\": {"
       echo "        \"url\": \"${urlTvRSS}\""
       echo "    }"
       echo "}"
