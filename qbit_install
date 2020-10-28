@@ -7,6 +7,9 @@ source src/qbit_rss
 source src/qbit_rules
 source src/qbit_conf
 
+# Define timezone
+sudo timedatectl set-timezone America/Sao_Paulo
+
 # Instala dependencias
 apt install unzip -y; apt install zip -y;
 add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
@@ -58,8 +61,13 @@ if [ ${torrentsFileEnable} = "on" ]; then
   echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"     >> /usr/bin/uploadFiles
   echo "sleep 60"                                                                                                                                     >> /usr/bin/uploadFiles
   echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --config ${rcloneFilesDir}/config/rclone.conf"                                     >> /usr/bin/uploadFiles
-  echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                            >> /var/spool/cron/crontabs/root
   chmod a+x /usr/bin/uploadFiles
+
+  # Cria regra no crontab
+  crontab -l > mycron
+  echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                            >> mycron
+  crontab mycron
+  rm mycron
 fi
 
 # Adiciona conf do script
