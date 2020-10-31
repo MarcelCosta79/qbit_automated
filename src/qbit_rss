@@ -4,7 +4,7 @@ source src/qbit_user
 
 qbit_rss() {
   if [ $rssEnable = "on" ]; then
-    rssLink="/home/$USER/qBittorrent/config/rss/feeds.json"
+    rssLink="~/qBittorrent/config/rss/feeds.json"
     {
       echo "{"
       echo "    \"Filmes\": {"

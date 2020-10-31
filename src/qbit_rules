@@ -4,7 +4,7 @@ source src/qbit_user
 
 qbit_rules () {
   if [ $rssEnable = "on" ]; then
-    regexQbit="/home/$USER/qBittorrent/config/rss/download_rules.json"
+    regexQbit="~/qBittorrent/config/rss/download_rules.json"
     echo "{"                                                                             > ${regexQbit}
     echo "    \"Séries\": {"                                                             >> ${regexQbit}
     echo "        \"addPaused\": false,"                                                 >> ${regexQbit}

@@ -11,11 +11,10 @@ source src/qbit_conf
 sudo timedatectl set-timezone America/Sao_Paulo
 
 # Instala dependencias
-apt install unzip -y; apt install zip -y;
-add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
-apt install qbittorrent-nox -y
-curl https://rclone.org/install.sh | sudo bash
-mkdir -p /home/$USER
+sudo apt install unzip -y; apt install zip -y;
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+sudo apt install qbittorrent-nox -y
+sudo curl https://rclone.org/install.sh | sudo bash
 
 # Download da config do rclone
 if [ ${rcloneDownloadConfig} = "on" ]; then
@@ -33,41 +32,40 @@ qbit_rclone
 qbit_service
 
 # Cria pastas necessárias
-mkdir -p /home/$USER/qBittorrent/downloads/
-mkdir -p /home/$USER/qBittorrent/files/
-mkdir -p /home/$USER/qBittorrent/files_incomplete/
-mkdir -p /home/$USER/qBittorrent/config/
-mkdir -p /home/$USER/qBittorrent/config/rss/
+mkdir -p ~/qBittorrent/downloads/
+mkdir -p ~/qBittorrent/files/
+mkdir -p ~/qBittorrent/files_incomplete/
+mkdir -p ~/qBittorrent/config/
+mkdir -p ~/qBittorrent/config/rss/
 
 if [ ${autoTorrents} = "on" ]; then
   # Download dos arquivos .torrent
-  cd /home/$USER/qBittorrent/files/
-  rclone copy ${filesRemote}:torrents_latest.zip ${PWD} --config ${rcloneFilesDir}/config/rclone.conf
-  unzip torrents_latest.zip
-  rm torrents_latest.zip
+  pathUnzip=~/qBittorrent/files/
+  rclone copy ${filesRemote}:torrents_latest.zip ${pathUnzip} --config ${rcloneFilesDir}/config/rclone.conf
+  unzip ${pathUnzip}/torrents_latest.zip -d ${pathUnzip}
+  rm ${pathUnzip}/torrents_latest.zip
 
   if [ ${crontabEnable} = "on" ]; then
     # Cria symlinks
-    ln -s $moviesPath$cronMovies /home/$USER/qBittorrent/downloads/
-    ln -s $tvPath$cronTv /home/$USER/qBittorrent/downloads/
-    ln -s $epsPath$cronEps /home/$USER/qBittorrent/downloads/
+    ln -s $moviesPath$cronMovies ~/qBittorrent/downloads/
+    ln -s $tvPath$cronTv ~/qBittorrent/downloads/
+    ln -s $epsPath$cronEps ~/qBittorrent/downloads/
   fi
 fi
 
 # Zipar e salvar os .torrents na nuvem.
 if [ ${torrentsFileEnable} = "on" ]; then
-  echo "cd /home/$USER/qBittorrent/files/"                                                                                                            >  /usr/bin/uploadFiles
-  echo "zip -r torrents_latest.zip *.torrent"                                                                                                         >> /usr/bin/uploadFiles
-  echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"     >> /usr/bin/uploadFiles
-  echo "sleep 60"                                                                                                                                     >> /usr/bin/uploadFiles
-  echo "rclone move torrents_latest.zip ${filesRemote}: --checksum --drive-chunk-size=16M --config ${rcloneFilesDir}/config/rclone.conf"              >> /usr/bin/uploadFiles
-  chmod a+x /usr/bin/uploadFiles
+  sudo echo "zip -9 -r ~/qBittorrent/files/torrents_latest.zip ~/qBittorrent/files/*.torrent"                                                                          > /usr/bin/uploadFiles
+  sudo echo "rclone moveto ${filesRemote}:torrents_latest.zip ${filesRemote}:\$(date +\"%d-%m-%Y\").zip --config ${rcloneFilesDir}/config/rclone.conf"                 >> /usr/bin/uploadFiles
+  sudo echo "sleep 60"                                                                                                                                                 >> /usr/bin/uploadFiles
+  sudo echo "rclone move ~/qBittorrent/files/torrents_latest.zip ${filesRemote}: --checksum --drive-chunk-size=16M --config ${rcloneFilesDir}/config/rclone.conf"      >> /usr/bin/uploadFiles
+  sudo chmod a+x /usr/bin/uploadFiles
 
   # Cria regra no crontab
-  crontab -l > mycron
-  echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                            >> mycron
-  crontab mycron
-  rm mycron
+  sudo crontab -l > mycron
+  sudo echo "0 */2 * * * /usr/bin/uploadFiles  >/dev/null 2>&1"                                                                                                        >> mycron
+  sudo crontab mycron
+  sudo rm mycron
 fi
 
 # Adiciona conf do script
@@ -84,13 +82,13 @@ qbit_rules
 
 # Inicia qBittorrent
 if [ ${autoTorrents} = "on" ]; then
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb} --category=autoTorrents --skip-hash-check --save-path=/home/$USER/qBittorrent/downloads/ /home/$USER/qBittorrent/files/*.torrent
+  qbittorrent-nox -d --profile=~/ --webui-port=${portWeb} --category=autoTorrents --skip-hash-check --save-path=~/qBittorrent/downloads/ ~/qBittorrent/files/*.torrent
 else
-  qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb}
+  qbittorrent-nox -d --profile=~/ --webui-port=${portWeb}
 fi
 
 # Service qBittorrent
-systemctl enable qbittorrent-${portWeb}.service
+sudo systemctl enable qbittorrent-${portWeb}.service
 
 # Inicia script personalizado
 qbit_onEnd

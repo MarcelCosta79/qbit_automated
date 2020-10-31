@@ -24,7 +24,7 @@ autoTorrents="off"
 # Adicionar remote para cursos
 enableCourses="off"
 courseRemote="Cursos"
-coursePath="/cursos"
+coursePath="~/mnt/cursos"
 cacheCourses="100G"
 
 # Com isso ativado, links simbólicos serão criando centralizando seus arquivos em uma única pasta.
@@ -35,9 +35,9 @@ cronTv="/*"                                       # Local odne suas séries ira 
 cronEps="/*"                                      # Local onde seus episódios avulsos ira ficar. /* = $epsPath/Name.S01E01...
 
 # Pastas e arquivos do rclone.
-moviesPath="/filmes"                              # Pasta onde sera montado o drive contendo os filmes.
-tvPath="/series"                                  # Pasta onde sera montado o drive contendo as séries.
-epsPath="/episodios"                              # Pasta onde sera montado o drive contendo os episódios.
+moviesPath="~/mnt/filmes"                         # Pasta onde sera montado o drive contendo os filmes.
+tvPath="~/mnt/series"                             # Pasta onde sera montado o drive contendo as séries.
+epsPath="~/mnt/episodios"                         # Pasta onde sera montado o drive contendo os episódios.
 
 # Nomes dos remote adicionados no rclone.
 moviesRemote="Filmes"                             # Insira o nome que você inseriu no rclone para o remote de filmes.
@@ -45,7 +45,7 @@ tvRemote="Series"                                 # Insira o nome que você inse
 epsRemote="Episodios"                             # Insira o nome que você inseriu no rclone para o remote de episódios.
 
 # Local onde sera salvo os arquivos do rclone.
-rcloneFilesDir="/home/$USER/rclone"
+rcloneFilesDir="~/rclone"
 
 # Cache para os downloads feito pelo torrent.
 # paga giga use "G", para mega usa "M".
@@ -56,8 +56,8 @@ cacheDir="${rcloneFilesDir}/cache"                # Diretorio onde o cache sera 
 
 # Informações da maquina + random's
 ip=$(curl -kLs "http://api.ipify.org")
-portWeb=$(shuf -i 1000-10000 -n 1)
-portQbit=$(shuf -i 1000-10000 -n 1)
+portWeb=$(shuf -i 1000-9000 -n 1)
+portQbit=$(shuf -i 10000-90000 -n 1)
 
 # Script adicionais
 # Scripts adicionado aqui será executado de antes de inicir a instalação.

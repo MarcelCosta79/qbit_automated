@@ -4,16 +4,16 @@ source src/qbit_user
 
 qbit_service() {
   {
-    echo "[Unit]"
-    echo "Description=qBittorrent"
-    echo "After=network.target"
-    echo ""
-    echo "[Service]"
-    echo "Type=forking"
-    echo "ExecStart=/usr/bin/qbittorrent-nox -d --profile=/home/$USER --webui-port=${portWeb}"
-    echo "Restart=on-failure"
-    echo ""
-    echo "[Install]"
-    echo "WantedBy=multi-user.target"
+    sudo echo "[Unit]"
+    sudo echo "Description=qBittorrent"
+    sudo echo "After=network.target"
+    sudo echo ""
+    sudo echo "[Service]"
+    sudo echo "Type=forking"
+    sudo echo "ExecStart=/usr/bin/qbittorrent-nox -d --profile=~/ --webui-port=${portWeb}"
+    sudo echo "Restart=on-failure"
+    sudo echo ""
+    sudo echo "[Install]"
+    sudo echo "WantedBy=multi-user.target"
   } > /etc/systemd/system/qbittorrent-${portWeb}.service
 }

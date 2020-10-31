@@ -16,13 +16,24 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:test" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4508470-aefa-4f7b-bf2b-f20d1e422b3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qbit_install" beforeDir="false" afterPath="$PROJECT_DIR$/qbit_install" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/qbit_conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/qbit_rclone" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_rclone" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/qbit_rss" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_rss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/qbit_rules" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_rules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/qbit_service" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/qbit_user" beforeDir="false" afterPath="$PROJECT_DIR$/src/qbit_user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +58,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="?" />
+    </option>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,7 +71,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603371476094</updated>
-      <workItem from="1603371499189" duration="4985000" />
+      <workItem from="1603371499189" duration="5933000" />
+      <workItem from="1603382120427" duration="9596000" />
+      <workItem from="1603421358415" duration="218000" />
+      <workItem from="1603555506204" duration="4972000" />
+      <workItem from="1603561710291" duration="3475000" />
+      <workItem from="1603573439914" duration="5644000" />
+      <workItem from="1603625437706" duration="10573000" />
+      <workItem from="1603694935418" duration="805000" />
+      <workItem from="1603833496315" duration="1558000" />
+      <workItem from="1603838175715" duration="1341000" />
+      <workItem from="1603856793281" duration="1057000" />
+      <workItem from="1603858482245" duration="574000" />
+      <workItem from="1603894004343" duration="6285000" />
     </task>
     <servers />
   </component>
@@ -67,10 +95,33 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2" timestamp="1603858961576">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="148" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603858961576" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1603837048504">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1603837048504" />
   </component>
 </project>
